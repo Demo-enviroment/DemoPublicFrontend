@@ -27,6 +27,8 @@ WORKDIR /app/build
 # Copy the app build files to the Nginx HTML directory
 COPY .  /usr/share/nginx/html/
 
+RUN service nginx restart
+
 # Expose port 80 for Nginx
 EXPOSE 80
 
