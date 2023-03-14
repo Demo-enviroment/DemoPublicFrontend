@@ -2,7 +2,7 @@
 FROM node:latest
 
 RUN apt-get update
-RUN apt-get install nginx -y
+
 
 # Set the working directory
 WORKDIR /app
@@ -16,22 +16,10 @@ RUN npm install
 # Copy the rest of the app files
 COPY . .
 
-RUN rm /etc/nginx/nginx.conf
-
-# Copy the Nginx configuration file
-COPY nginx.conf /etc/nginx/nginx.conf
-
-RUN ls /app/build
-
-WORKDIR /app/build
-# Copy the app build files to the Nginx HTML directory
-COPY .  /usr/share/nginx/html/
-
-RUN service nginx restart
 
 # Expose port 80 for Nginx
 EXPOSE 80
 
 # Start Nginx in the foreground
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm","start"]
 
